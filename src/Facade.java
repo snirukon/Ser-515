@@ -57,17 +57,29 @@ public class Facade {
     {
         if(type==0) {
             person = new Buyer();
-
+            createproducts();
         }
         else if(type==1) {
             person = new Seller();
-            
+            createproducts();
         }
 
     }
     public void createproducts() {
+        File products=new File("ProductInfo.txt");
+        try {
+            FileReader p = new FileReader(products);
+            BufferedReader buffername = new BufferedReader(p);
+            String string;
+            while ((string = buffername.readLine()) != null) {
 
-
+                String[] x = string.split(":");
+                this.pName.add(x[1]);
+            }
+        }
+        catch(Exception e){e.printStackTrace();}
+        ListIterator l= new ListIterator();
+        l.iterate(pName);
     }
 
 
